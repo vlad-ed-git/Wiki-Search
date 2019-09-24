@@ -1,0 +1,14 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="height_md">56dp</dimen>
+    <dimen name="collpase_appbar_height_std">92dp</dimen>
+    <dimen name="padding_md">16dp</dimen>
+    <dimen name="card_elevation">6dp</dimen>
+    <dimen name="clickable_std">48dp</dimen>
+    <dimen name="icon_std">24dp</dimen>
+    <dimen name="padding_std">8dp</dimen>
+    <dimen name="txt_std">16sp</dimen>
+    <dimen name="icon_md">32dp</dimen>
+</resources>

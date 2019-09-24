@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/explore_wiki"
+        android:icon="@drawable/ic_explore_black_24dp"
+        android:title="@string/explore_txt" />
+
+    <item
+        android:id="@+id/user_history"
+        android:icon="@drawable/ic_history_black_24dp"
+        android:title="@string/history_txt" />
+
+    <item
+        android:id="@+id/favorites"
+        android:icon="@drawable/ic_favorite_black_24dp"
+        android:title="@string/favorites_txt" />
+
+</menu>
