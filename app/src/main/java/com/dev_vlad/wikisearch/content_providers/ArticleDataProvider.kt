@@ -1,6 +1,5 @@
 package com.dev_vlad.wikisearch.content_providers
 
-import com.dev_vlad.wikisearch.R
 import com.dev_vlad.wikisearch.models.Urls
 import com.dev_vlad.wikisearch.models.WikiResult
 import com.github.kittinunf.fuel.core.FuelManager
@@ -33,25 +32,25 @@ class ArticleDataProvider {
     // in kotlin _ means these objects /parameters are not used and should not be processed
     fun search(term:String, skip:Int, take:Int, responseHandler: (result : WikiResult) -> Unit?){
         Urls.getSearchUrl(term, skip, take).httpGet().responseObject(WikipediaDataDeserializer()){
-                _, response : Response, result ->
+                _, response, result ->
 
             if(response.statusCode != 200){
-                throw Exception("unable to get articles")
+                throw Exception("unable to get queried articles : status code" + response.statusCode.toString())
             }
-            val(data, _) = result
+            val(data, error) = result
             responseHandler.invoke(data as WikiResult)
         }
     }
 
     fun getRandom(take:Int, responseHandler: (result : WikiResult) -> Unit?){
         Urls.getRandomUrl(take).httpGet().responseObject(WikipediaDataDeserializer()){
-                _, response : Response, result ->
+                _, response, result ->
 
-            if(response.statusCode != 200){
-                throw Exception("unable to get articles")
+            if( response.statusCode != 200){
+                throw Exception("unable to get random articles : status code " + response.statusCode.toString())
             }
 
-            val(data, _) = result
+            val(data, error) = result
             responseHandler.invoke(data as WikiResult)
         }
     }

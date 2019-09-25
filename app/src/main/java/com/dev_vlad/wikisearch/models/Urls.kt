@@ -14,13 +14,13 @@ object Urls {
                 "&gpssearch=$term" +
                 "&gpslimit=$take" +
                 "&gpsoffset=$skip" +
-                "&props=pageimages|info" +
+                "&prop=pageimages|info" +
                 "&piprop=thumbnail|url" +
                 "&pithumbsize=200" +
                 "&pilimit=$take" +
                 "&wbtterms=description" +
                 "&format=json" +
-                "&inrpop=url"
+                "&inprop=url"
 
     }
 
@@ -30,9 +30,9 @@ object Urls {
                 "&generator=random" +
                 "&grnnamespace=0" +
                 "&grnlimit=$take" +
-                "&props=pageimages|info" +
+                "&prop=pageimages|info" +
                 "&pithumbsize=200" +
                 "&format=json" +
-                "&inrpop=url"
+                "&inprop=url"
     }
 }

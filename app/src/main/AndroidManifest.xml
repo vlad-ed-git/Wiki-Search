@@ -22,7 +22,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SplashActivity" />
         <activity android:name=".SearchActivity"
             android:label="@string/search_act_lbl"/>
         <activity android:name=".ArticleDetailsActivity"

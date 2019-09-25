@@ -7,9 +7,18 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.widget.SearchView
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.dev_vlad.wikisearch.adapters.ArticleCardAdapter
+import com.dev_vlad.wikisearch.adapters.ArticleListItemAdapter
+import com.dev_vlad.wikisearch.content_providers.ArticleDataProvider
+import com.dev_vlad.wikisearch.models.WikiResult
 import kotlinx.android.synthetic.main.activity_search.*
 
 class SearchActivity : AppCompatActivity() {
+
+    private val articlesAdapter: ArticleListItemAdapter =  ArticleListItemAdapter()
+    private val articleDataProvider : ArticleDataProvider = ArticleDataProvider()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,6 +27,11 @@ class SearchActivity : AppCompatActivity() {
         setSupportActionBar(search_act_toolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setDisplayShowHomeEnabled(true)
+
+
+        found_articles_rv?.layoutManager = LinearLayoutManager(this)
+        found_articles_rv?.adapter = articlesAdapter
+
 
     }
 
@@ -47,7 +61,13 @@ class SearchActivity : AppCompatActivity() {
         //handle search query
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
-                return false //TODO
+                articleDataProvider.search(query!!, 0, 20){ result: WikiResult ->
+                    articlesAdapter.currentResults.clear()
+                    //done asynchronously
+                    articlesAdapter.currentResults.addAll(result.query!!.pages)
+                    runOnUiThread{articlesAdapter.notifyDataSetChanged()}
+                }
+                return false
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {

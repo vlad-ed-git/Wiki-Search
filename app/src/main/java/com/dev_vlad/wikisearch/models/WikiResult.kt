@@ -1,5 +1,6 @@
 package com.dev_vlad.wikisearch.models
 
+//correspond to the whole query result in json
 class WikiResult {
-    var result_query : WikiQueryData? = null
+    val query : WikiQueryData? = null
 }
