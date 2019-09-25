@@ -15,4 +15,5 @@
     <string name="history_txt">History</string>
     <string name="favorites_txt">Favorites</string>
     <string name="app_imgs">wikisearch images</string>
+    <string name="err_get_articles">unable to get articles</string>
 </resources>
