@@ -16,4 +16,12 @@
     <string name="favorites_txt">Favorites</string>
     <string name="app_imgs">wikisearch images</string>
     <string name="err_get_articles">unable to get articles</string>
+
+
+    <!-- history fragment -->
+    <string name="clear_history_txt">Clear</string>
+    <string name="confirm_clear_msg">Are you sure you want to clear your history?</string>
+    <string name="yes_txt">Yes</string>
+    <string name="no_txt">No</string>
+    <string name="confirm_title">Confirm</string>
 </resources>

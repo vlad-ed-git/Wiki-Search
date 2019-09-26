@@ -23,7 +23,7 @@ class CardHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         itemView.setOnClickListener { view: View? ->
 
             val detailsActivityIntent = Intent(view!!.context, ArticleDetailsActivity::class.java)
-            var pageJson = Gson().toJson(wikiPage)
+            val pageJson = Gson().toJson(wikiPage)
             detailsActivityIntent.putExtra("wiki_page", pageJson)
             itemView.context.startActivity(detailsActivityIntent)
         }

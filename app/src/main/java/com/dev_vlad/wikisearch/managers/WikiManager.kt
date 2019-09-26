@@ -52,12 +52,14 @@ class WikiManager( private val articleDataProvider: ArticleDataProvider, private
     ///////DELETING
     fun removeArticleFromHistory(pageId: Int){
         historyRepository.removeFromHistory(pageId)
-        historyCache =  historyCache!!.filter { it.pageid != pageId } as ArrayList<WikiPage>
+        if(historyCache != null)
+            historyCache =  historyCache!!.filter { it.pageid != pageId } as ArrayList<WikiPage>
     }
 
     fun removeArticleFromFavorites(pageId:Int){
         favoritesRepository.removeFavorite(pageId)
-        favoritesCache =  favoritesCache!!.filter { it.pageid != pageId } as ArrayList<WikiPage>
+        if(favoritesCache != null)
+            favoritesCache =  favoritesCache!!.filter { it.pageid != pageId } as ArrayList<WikiPage>
     }
 
     fun clearHistory(){

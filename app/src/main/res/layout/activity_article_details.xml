@@ -38,5 +38,16 @@
         app:layout_constraintTop_toBottomOf="@id/article_details_appbar" />
 
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/favorites_fab"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:fabSize="normal"
+        android:layout_margin="16dp"
+        android:tint="@android:color/darker_gray"
+        android:src="@drawable/ic_favorite_black_24dp"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
