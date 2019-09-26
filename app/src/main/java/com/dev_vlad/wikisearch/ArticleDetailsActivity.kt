@@ -3,6 +3,10 @@ package com.dev_vlad.wikisearch
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View.GONE
+import android.webkit.WebResourceRequest
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import com.dev_vlad.wikisearch.models.WikiPage
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_article_details.*
@@ -22,7 +26,7 @@ class ArticleDetailsActivity : AppCompatActivity() {
         val wikiPagejsonstr:String? = intent.getStringExtra("wiki_page")
         currentPage  = Gson().fromJson<WikiPage>(wikiPagejsonstr, WikiPage::class.java)
 
-        /*//make sure android uses this webview
+        //make sure android uses this webview
         article_details_wv.webViewClient = object : WebViewClient(){
             override fun shouldOverrideUrlLoading(
                 view: WebView?,
@@ -30,10 +34,15 @@ class ArticleDetailsActivity : AppCompatActivity() {
             ): Boolean {
                 return true
             }
+
+            override fun onPageFinished(view: WebView?, url: String?) {
+                super.onPageFinished(view, url)
+                article_details_progressbar.visibility = GONE
+            }
         }
 
         //display in webview
-        article_details_wv.loadUrl(currentPage!!.fullurl)*/
+        article_details_wv.loadUrl(currentPage!!.fullurl)
 
     }
 
