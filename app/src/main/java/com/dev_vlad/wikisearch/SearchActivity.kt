@@ -11,13 +11,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.dev_vlad.wikisearch.adapters.ArticleCardAdapter
 import com.dev_vlad.wikisearch.adapters.ArticleListItemAdapter
 import com.dev_vlad.wikisearch.content_providers.ArticleDataProvider
+import com.dev_vlad.wikisearch.managers.WikiManager
 import com.dev_vlad.wikisearch.models.WikiResult
 import kotlinx.android.synthetic.main.activity_search.*
 
 class SearchActivity : AppCompatActivity() {
 
     private val articlesAdapter: ArticleListItemAdapter =  ArticleListItemAdapter()
-    private val articleDataProvider : ArticleDataProvider = ArticleDataProvider()
+    private var wikiManager : WikiManager? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,6 +28,8 @@ class SearchActivity : AppCompatActivity() {
         setSupportActionBar(search_act_toolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setDisplayShowHomeEnabled(true)
+
+        wikiManager = (applicationContext as WikiSearchApp).wikiManager
 
 
         found_articles_rv?.layoutManager = LinearLayoutManager(this)
@@ -61,7 +64,7 @@ class SearchActivity : AppCompatActivity() {
         //handle search query
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
-                articleDataProvider.search(query!!, 0, 20){ result: WikiResult ->
+                wikiManager?.searchArticles(query!!, 0, 20){ result: WikiResult ->
                     articlesAdapter.currentResults.clear()
                     //done asynchronously
                     articlesAdapter.currentResults.addAll(result.query!!.pages)

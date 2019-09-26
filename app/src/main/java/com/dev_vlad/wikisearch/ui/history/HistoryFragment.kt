@@ -11,10 +11,21 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 import com.dev_vlad.wikisearch.R
+import com.dev_vlad.wikisearch.WikiSearchApp
 import com.dev_vlad.wikisearch.adapters.ArticleListItemAdapter
+import com.dev_vlad.wikisearch.managers.WikiManager
 
 
 class HistoryFragment : Fragment() {
+
+    private var wikiManager : WikiManager? = null
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+        wikiManager = (activity?.applicationContext as WikiSearchApp).wikiManager
+
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

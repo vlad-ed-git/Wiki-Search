@@ -1,24 +1,35 @@
 package com.dev_vlad.wikisearch.ui.favorites
 
 
-import android.content.Intent
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 import com.dev_vlad.wikisearch.R
+import com.dev_vlad.wikisearch.WikiSearchApp
 import com.dev_vlad.wikisearch.adapters.ArticleCardAdapter
+import com.dev_vlad.wikisearch.managers.WikiManager
 import kotlinx.android.synthetic.main.fragment_favorites.*
 
 /**
  * A simple [Fragment] subclass.
  */
 class FavoritesFragment : Fragment() {
+
+
+    private var wikiManager : WikiManager? = null
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+        wikiManager = (activity?.applicationContext as WikiSearchApp).wikiManager
+
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

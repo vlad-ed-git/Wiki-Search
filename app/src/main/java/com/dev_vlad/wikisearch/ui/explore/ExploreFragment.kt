@@ -1,5 +1,6 @@
 package com.dev_vlad.wikisearch.ui.explore
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -14,17 +15,29 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 
 import com.dev_vlad.wikisearch.R
 import com.dev_vlad.wikisearch.SearchActivity
+import com.dev_vlad.wikisearch.WikiSearchApp
 import com.dev_vlad.wikisearch.adapters.ArticleCardAdapter
 import com.dev_vlad.wikisearch.content_providers.ArticleDataProvider
+import com.dev_vlad.wikisearch.managers.WikiManager
 import com.dev_vlad.wikisearch.models.WikiResult
 import kotlinx.android.synthetic.main.fragment_explore.*
 import java.lang.Exception
 
 class ExploreFragment : Fragment() {
 
+    private var wikiManager : WikiManager? = null
+
+
     private val articleCardAdapter: ArticleCardAdapter =  ArticleCardAdapter()
-    private val articleDataProvider : ArticleDataProvider = ArticleDataProvider()
     private  var swipe_to_refresh:SwipeRefreshLayout? = null
+
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+        wikiManager = (activity?.applicationContext as WikiSearchApp).wikiManager
+
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -61,7 +74,7 @@ class ExploreFragment : Fragment() {
         swipe_to_refresh!!.isRefreshing = true
 
         try {
-            articleDataProvider.getRandom(15) { wikiResult ->
+           wikiManager?.randomArticlesFetch(15) { wikiResult ->
                 articleCardAdapter.currentResults.clear()
                 //done asynchronously
 
