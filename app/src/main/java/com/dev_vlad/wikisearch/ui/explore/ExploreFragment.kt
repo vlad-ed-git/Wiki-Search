@@ -11,6 +11,8 @@ import android.view.ViewGroup
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager.VERTICAL
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 
 import com.dev_vlad.wikisearch.R
@@ -56,7 +58,7 @@ class ExploreFragment : Fragment() {
             context?.startActivity(searchIntent)
         }
 
-        exploreWikiRv?.layoutManager = LinearLayoutManager(context)
+        exploreWikiRv?.layoutManager = StaggeredGridLayoutManager(2, VERTICAL)
         exploreWikiRv?.adapter = articleCardAdapter
 
 

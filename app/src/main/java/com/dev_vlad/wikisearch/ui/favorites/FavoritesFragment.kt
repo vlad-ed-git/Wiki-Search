@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 
 import com.dev_vlad.wikisearch.R
 import com.dev_vlad.wikisearch.WikiSearchApp
@@ -48,7 +49,8 @@ class FavoritesFragment : Fragment() {
         val favorites_rv: RecyclerView? = view?.findViewById<RecyclerView>(R.id.favorites_rv)
 
 
-        favorites_rv?.layoutManager = LinearLayoutManager(context)
+        favorites_rv?.layoutManager =
+            StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         favorites_rv?.adapter = articleCardAdapter
 
 

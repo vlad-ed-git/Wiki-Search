@@ -6,6 +6,7 @@ import com.google.gson.Gson
 import org.jetbrains.anko.db.delete
 import org.jetbrains.anko.db.insert
 import org.jetbrains.anko.db.rowParser
+import org.jetbrains.anko.db.select
 
 
 class FavoritesRepository(private val articleDatabaseOpenHelper: ArticleDatabaseOpenHelper) {
@@ -51,6 +52,10 @@ class FavoritesRepository(private val articleDatabaseOpenHelper: ArticleDatabase
             page.thumbnail = Gson().fromJson(thumbnailJson, WikiThumbnail::class.java)
 
             allAllFavorites.add(page)
+        }
+
+        articleDatabaseOpenHelper.use {
+            select(TABLE_NAME).parseList(articleRowParser)
         }
 
         return allAllFavorites

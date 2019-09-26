@@ -20,7 +20,13 @@ class HistoryFragment : Fragment() {
 
     private var wikiManager : WikiManager? = null
 
-    private val articleCardAdapter: ArticleCardAdapter =  ArticleCardAdapter()
+    private val articleListItemAdapter: ArticleListItemAdapter = ArticleListItemAdapter()
+
+
+    init {
+        //to use this's fragment's menu and not parent's menu
+        setHasOptionsMenu(true)
+    }
 
 
     override fun onAttach(context: Context) {
@@ -41,7 +47,7 @@ class HistoryFragment : Fragment() {
         val history_rv: RecyclerView? = view?.findViewById<RecyclerView>(R.id.history_rv)
 
         history_rv?.layoutManager = LinearLayoutManager(context)
-        history_rv?.adapter = articleCardAdapter
+        history_rv?.adapter = articleListItemAdapter
 
 
         return view
@@ -53,11 +59,11 @@ class HistoryFragment : Fragment() {
 
         doAsync {
             val historyArticles = wikiManager!!.getHistory()
-            articleCardAdapter.currentResults.clear()
+           articleListItemAdapter.currentResults.clear()
             if (historyArticles != null) {
-                articleCardAdapter.currentResults.addAll(historyArticles)
+                articleListItemAdapter.currentResults.addAll(historyArticles)
                 activity!!.runOnUiThread {
-                    articleCardAdapter.notifyDataSetChanged()
+                    articleListItemAdapter.notifyDataSetChanged()
                 }
             }
         }
@@ -77,11 +83,11 @@ class HistoryFragment : Fragment() {
                 R.string.confirm_clear_msg, R.string.confirm_title
             ){
               yesButton{
-                  articleCardAdapter.currentResults.clear()
+                  articleListItemAdapter.currentResults.clear()
                   doAsync {
                       wikiManager!!.clearHistory()
                   }
-                  activity?.runOnUiThread{articleCardAdapter.notifyDataSetChanged()}
+                  activity?.runOnUiThread{articleListItemAdapter.notifyDataSetChanged()}
 
 
               }
